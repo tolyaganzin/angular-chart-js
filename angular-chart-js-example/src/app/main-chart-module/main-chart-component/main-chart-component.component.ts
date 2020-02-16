@@ -21,14 +21,16 @@ export class MainChartComponentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.getData()
+    this.setData(ChartDataService.initValues())
   }
 
-  getData() {
-    let res = ChartDataService.initValues()
-    console.log(res)
+  setData(res) {
     this.chartData = res.chartData;
     this.chartColors = res.chartColors;
     this.chartOptions = res.chartOptions;
+  }
+
+  getData() {
+    this.setData(ChartDataService.updateValues())
   }
 }

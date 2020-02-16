@@ -39,44 +39,54 @@ export class ChartDataService {
       this.chartData.map((item: { data: number[]; }) => item.data.push(Math.floor(Math.random() * Math.floor(111))));
     }
 
-    let colors = [];
-    let colors2 = [];
+    for (let i = 0; i < this.chartData.length ; i++) {
+      let colors = [];
 
-     this.chartData[1].data.map(item => {
-       if(item < 25) {
-         colors.push('#81d7fa')
-       } else if (item > 24 && item < 50) {
-         colors.push('#2389d7')
-       } else if (item > 49 && item < 75) {
-         colors.push('#ffb64d')
-       } else if (item > 74) {
-         colors.push('#d43d50')
-       } else {
-         alert('average: '+item)
-       }
-     })
-     this.chartData[0].data.map(item => {
-       if(item < 25) {
-         colors2.push('#81d7fa')
-       } else if (item > 24 && item < 50) {
-         colors2.push('#2389d7')
-       } else if (item > 49 && item < 75) {
-         colors2.push('#ffb64d')
-       } else if (item > 74) {
-         colors2.push('#d43d50')
-       } else {
-         alert('hourly: '+item)
-       }
-     })
-     this.chartColors[1].pointBorderColor = colors;
-     this.chartColors[1].pointHoverBackgroundColor = colors;
-     this.chartColors[1].pointBackgroundColor = colors;
+      this.chartData[i].data.map(item => {
+        if(item < 25) {
+          colors.push('#81d7fa')
+        } else if (item > 24 && item < 50) {
+          colors.push('#2389d7')
+        } else if (item > 49 && item < 75) {
+          colors.push('#ffb64d')
+        } else if (item > 74) {
+          colors.push('#ff3333')
+        }
+      })
 
-     this.chartColors[0].pointBorderColor = colors2;
-     this.chartColors[0].pointHoverBackgroundColor = colors2;
-     this.chartColors[0].pointBackgroundColor = colors2;
+      this.chartColors[i].pointBorderColor = colors;
+      this.chartColors[i].pointHoverBackgroundColor = colors;
+      this.chartColors[i].pointBackgroundColor = colors;
+    }
+  }
 
-     console.log(this.chartData)
+  static createCard(name: string): void {
+    this.chartData.push(
+      {
+        data: [],
+        pointRadius: 5,
+        pointBorderWidth: 2,
+        label: name,
+        fill: false,
+        lineTension: 0
+      }
+    )
+  }
+
+  static createNewColor(): void {
+    this.chartColors.push(
+      {
+        backgroundColor: 'rgba('+ Math.floor(Math.random() * Math.floor(256)) + ','
+        + Math.floor(Math.random() * Math.floor(256)) + ','
+        + Math.floor(Math.random() * Math.floor(256)) + ', 0.1)',
+        borderColor: 'rgba('+ Math.floor(Math.random() * Math.floor(256)) + ','
+        + Math.floor(Math.random() * Math.floor(256)) + ','
+        + Math.floor(Math.random() * Math.floor(256)) + ', 0.5)',
+        pointBackgroundColor: [],
+        pointBorderColor: [],
+        pointHoverBackgroundColor: []
+      },
+    )
   }
 
   static initValues(): chartMainData {
@@ -113,45 +123,22 @@ export class ChartDataService {
         }]
       }
     };
+    this.chartData = [];
+    this.chartColors = [];
 
-    this.chartData = [
-      {
-        data: [],
-        pointRadius: 5,
-        pointBorderWidth: 2,
-        label: 'green card',
-        fill: false,
-        lineTension: 0
-      },
-      {
-        data: [],
-        pointRadius: 5,
-        pointBorderWidth: 2,
-        label: 'white card',
-        fill: false,
-        lineTension: 0
-      }
-    ];
+    this.createCard('green card');
+    this.createNewColor();
+    this.createCard('white card');
+    this.createNewColor();
+    return this.updateValues()
+  }
+  static updateValues(): chartMainData {
 
-    this.chartColors = [
-      {
-        backgroundColor: 'rgba(50, 0, 0, 0.1)',
-        borderColor: 'rgba(50, 0, 0, 0.5)',
-        pointBackgroundColor: [],
-        pointBorderColor: [],
-        pointHoverBackgroundColor: []
-      },
-      {
-        backgroundColor: 'rgba(50, 200, 50, 0.1)',
-        borderColor: 'rgba(50, 200, 50, 0.5)',
-        pointBackgroundColor: [],
-        pointBorderColor: [],
-        pointHoverBackgroundColor: []
-      }
-    ];
+    this.chartData = [];
 
+    this.createCard('green card');
+    this.createCard('white card');
     this.getData();
-    console.log(this.chartData)
 
     return {
       chartOptions: this.chartOptions,
