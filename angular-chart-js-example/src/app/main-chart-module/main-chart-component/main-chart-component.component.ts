@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartColors, ChartData, ChartDataService } from './../services/chart-data/chart-data.service'
 
 @Component({
   selector: 'app-main-chart-component',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainChartComponentComponent implements OnInit {
 
+  slectedArea: string = '';
+  isZoomIn: boolean = false;
+
+  chartData: ChartData[];
+  chartColors: ChartColors[];
+  chartLabels: string[] = [
+    'Jan','Feb','Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  chartOptions: object;
+
   constructor() { }
 
   ngOnInit() {
+    this.getData()
   }
 
+  getData() {
+    let res = ChartDataService.initValues()
+    console.log(res)
+    this.chartData = res.chartData;
+    this.chartColors = res.chartColors;
+    this.chartOptions = res.chartOptions;
+  }
 }

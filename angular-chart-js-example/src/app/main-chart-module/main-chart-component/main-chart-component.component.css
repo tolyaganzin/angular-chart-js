@@ -1,0 +1,42 @@
+.card {
+  color: #4a4a4a;
+  padding: 12px 40px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 2px 1px rgba(0, 1, 0, 0.15);
+  margin: 10px 0;
+  position: relative;
+  font-size: 15px;
+}
+.card h4 {
+  font-size: 15px;
+  min-width: 141px;
+  margin-right: 5px;
+}
+.card .fa-refresh {
+  cursor: pointer;
+}
+
+.support-info-block {
+  min-width: 1074px;
+  max-width: 1074px;
+}
+.zoom-btn {
+  cursor: pointer;
+}
+.zoom-btn:hover {
+  color: #2389d7;
+}
+
+.main-chart-container-scroll {
+  width: 100% ;
+  overflow-x: auto ;
+  overflow-y:hidden ;
+}
+.inner-chart-container-scroll {
+  width: 3000px ;
+  height: 340px ;
+}
+.chart-container {
+  width: 994px;
+  height: 357px ;
+}

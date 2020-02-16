@@ -1,3 +1,36 @@
-<p>
-  main-chart-component works!
-</p>
+<div class="support-info-block card">
+  <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="" fxLayout="row" fxLayoutAlign=" center">
+      <h4>Requests green and white cards from USA emigrantes</h4>
+      <i class="fa fa-refresh" (click)="getData()"></i>
+    </div>
+
+    <span class="zoom-btn" (click)="isZoomIn = !isZoomIn">{{isZoomIn?'zoom out': 'zoom in'}} <i class="fa" [ngClass]="{'fa-search-minus': isZoomIn, 'fa-search-plus': !isZoomIn}"></i></span>
+  </div>
+
+  <div class="">
+
+    <div class="main-chart-container-scroll" *ngIf="isZoomIn">
+      <div class="inner-chart-container-scroll">
+        <canvas id="chart1" baseChart height="340" width="0"
+        [chartType]="'line'"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [options]="chartOptions"></canvas>
+      </div>
+    </div>
+    <div class="main-chart-container-scroll" *ngIf="!isZoomIn">
+      <div class="chart-container">
+        <canvas baseChart height="357" width="0"
+        [chartType]="'line'"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [options]="chartOptions"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>
